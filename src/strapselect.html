@@ -1,0 +1,7 @@
+<div class="form-group" ng-class="{'has-error': hasError()}">
+  <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
+  <div class="form-group">
+    <button type="button" class="btn btn-default" ng-model="$$value$$" data-placeholder="form.placeholder || ('placeholders.select' | translate)" data-html="1" ng-options="item[0] as item[1] for item in form.schema.enum" bs-select></button>
+    <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
+  </div>
+</div>
