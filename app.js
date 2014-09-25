@@ -38,7 +38,8 @@ var app = angular.module('app', ['schemaForm-strapselect', 'pascalprecht.transla
           {value: 'value3', label: 'long very very long label3'}
         ]
       }
-    }
+    },
+    required: ['select']
   };
   $scope.form = [
     'name',
@@ -56,6 +57,7 @@ var app = angular.module('app', ['schemaForm-strapselect', 'pascalprecht.transla
   ];
   $scope.model = {};
   $scope.submitted = function(form){
+    $scope.$broadcast('schemaFormValidate')
     console.log($scope.model);
   };
 });
