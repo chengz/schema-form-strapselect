@@ -21,7 +21,7 @@ var app = angular.module('app', ['schemaForm-strapselect', 'pascalprecht.transla
         type: 'string',
         format: 'strapselect',
         description: 'Only single item is allowd',
-        enum: [
+        items: [
           {value: 'value1', label: 'label1'},
           {value: 'value2', label: 'label2'},
           {value: 'value3', label: 'label3'}
@@ -32,14 +32,14 @@ var app = angular.module('app', ['schemaForm-strapselect', 'pascalprecht.transla
         type: 'array',
         format: 'strapselect',
         description: 'Multi single items arre allowd',
-        enum: [
+        items: [
           {value: 'value1', label: 'label1'},
           {value: 'value2', label: 'label2'},
           {value: 'value3', label: 'long very very long label3'}
         ]
       }
     },
-    required: ['select']
+    required: ['select', 'multiselect']
   };
   $scope.form = [
     'name',
