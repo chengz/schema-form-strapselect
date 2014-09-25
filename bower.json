@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "angular-schema-form": ">= 0.7",
+    "angular-translate": ">= 2.4.0",
     "angular-mocks": ">= 1.2"
   }
 }
