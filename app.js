@@ -6,7 +6,7 @@
  * @name app
  * @type {angular.Module}
  */
-var app = angular.module('app', ['schemaForm-strapselect', 'schemaForm-strapmultiselect', 'pascalprecht.translate'])
+var app = angular.module('app', ['schemaForm-strapselect', 'pascalprecht.translate'])
 .controller('SelectController', function($scope){
   $scope.schema = {
     type: 'object',

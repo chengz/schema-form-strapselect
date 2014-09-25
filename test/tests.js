@@ -7,7 +7,6 @@ describe('Schema form', function() {
     beforeEach(module('templates'));
     beforeEach(module('schemaForm'));
     beforeEach(module('schemaForm-strapselect'));
-    beforeEach(module('schemaForm-strapmultiselect'));
     beforeEach(
       //We don't need no sanitation. We don't need no though control.
       module(function($sceProvider) {
