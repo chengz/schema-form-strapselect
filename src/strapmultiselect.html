@@ -1,0 +1,30 @@
+<script type='text/javascript'>
+    angular.module('lightApp').controller('selectItemCtrl', ['$scope', '$http', function ($scope, $http) {
+        $scope.getItem = {
+            readOnly: true
+        };
+
+        $scope.init = function(category, name) {
+          $scope.getItem.category = category;
+          $scope.getItem.name = name;
+        };
+
+        $scope.items = [];
+
+        $scope.fetchResult = function () {
+            $http.post('api/rs', $scope.getItem)
+                    .success(function (result, status, headers, config) {
+                        $scope.items = result;
+                        console.log('items', $scope.items);
+                    })
+        };
+        $scope.fetchResult();
+    }]);
+</script>
+<div class="form-group" ng-class="{'has-error': hasError(), 'has-success': hasSuccess()}">
+  <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
+  <div class="form-group" ng-controller="selectItemCtrl" ng-init="init(form.options.category, form.options.name)">
+    <button type="button" class="btn btn-default" sf-changed="form" ng-model="$$value$$" schema-validate="form" data-placeholder="{{form.placeholder || form.schema.placeholder || ('placeholders.select' | translate)}}" data-multiple="1" data-html="1" ng-options="item.value as item.id for item in items" bs-select></button>
+    <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
+  </div>
+</div>
