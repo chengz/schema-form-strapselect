@@ -6,15 +6,34 @@
  * @name app
  * @type {angular.Module}
  */
-var lightApp = angular.module('lightApp', ['mgcrea.ngStrap', 'schemaForm', 'pascalprecht.translate'])
+
+
+var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascalprecht.translate'])
 .config(['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', function ($controllerProvider, $compileProvider, $filterProvider, $provide) {
-    lightApp.controller = $controllerProvider.register;
-    lightApp.directive  = $compileProvider.directive;
-    lightApp.filter     = $filterProvider.register;
-    lightApp.factory    = $provide.factory;
-    lightApp.service    = $provide.service;
+    testApp.controller = $controllerProvider.register;
+    testApp.directive  = $compileProvider.directive;
+    testApp.filter     = $filterProvider.register;
+    testApp.factory    = $provide.factory;
+    testApp.service    = $provide.service;
 }])
 .controller('SelectController', function($scope){
+
+  $scope.callBackSD = function (options) {
+      return [
+          {value: 'value1', label: 'label1'},
+          {value: 'value2', label: 'label2'},
+          {value: 'value3', label: 'Dynamic select!'}
+        ]
+  };
+
+  $scope.callBackMSD = function (options) {
+      return [
+          {value: 'value1', label: 'label1'},
+          {value: 'value2', label: 'label2'},
+          {value: 'value3', label: 'Multiple dynamic select!'}
+        ]
+  };
+
   $scope.schema = {
     type: 'object',
     title: 'Select',
@@ -22,7 +41,6 @@ var lightApp = angular.module('lightApp', ['mgcrea.ngStrap', 'schemaForm', 'pasc
       select: {
         title: 'Single Select Static',
         type: 'string',
-        format: 'strapselect',
         description: 'Only single item is allowed',
         items: [
           {value: 'value1', label: 'label1'},
@@ -33,48 +51,48 @@ var lightApp = angular.module('lightApp', ['mgcrea.ngStrap', 'schemaForm', 'pasc
       multiselect: {
         title: 'Multi Select Static',
         type: 'array',
-        format: 'strapselect',
-        description: 'Multi single items are allowed',
+        description: 'Multi single items are allowed(select third for error)',
         items: [
-          {value: 'value1', label: 'label1'},
-          {value: 'value2', label: 'label2'},
+          {value: ['value1', 'value1a'], label: 'label1'},
+          {value: ['value2', 'value2'], label: 'label2'},
           {value: 'value3', label: 'long very very long label3'}
         ]
       },
         selectdynamic: {
             title: 'Single Select Dynamic',
             type: 'string',
-            format: 'strapselectdynamic',
-            description: 'Must be running on Light Server which is listening to port 8080'
+            description: 'This data is loaded from the $scope.callBackSD function.'
         },
         multiselectdynamic: {
             title: 'Multi Select Dynamic',
             type: 'array',
-            format: 'strapselectdynamic',
-            description: 'Must be running on Light Server which is listening to port 8080'
+            description: 'This data is loaded from the $scope.callBackMSD function.'
         }
     },
     required: ['select', 'multiselect']
   };
   $scope.form = [
      {
-       key: 'select'
+       "key": 'select',
+       "type": 'strapselect'
+
      },
      {
-       key: 'multiselect'
+       "key": 'multiselect',
+       "type": 'strapselect'
      },
      {
        "key": "selectdynamic",
+       "type": 'strapselectdynamic',
        "options": {
-         "category": "forum",
-         "name": "getForumDropdown"
+         "callback": $scope.callBackSD
        }
      },
      {
        "key": "multiselectdynamic",
-         "options": {
-         "category": "forum",
-         "name": "getForumDropdown"
+       "type": 'strapmultiselectdynamic',
+       "options": {
+         "callback": $scope.callBackMSD
        }
      },
      {
@@ -88,8 +106,11 @@ var lightApp = angular.module('lightApp', ['mgcrea.ngStrap', 'schemaForm', 'pasc
   $scope.model.select = 'value3';
   $scope.model.multiselect = ['value2', 'value1'];
 
+
   $scope.submitted = function(form){
     $scope.$broadcast('schemaFormValidate')
     console.log($scope.model);
   };
 });
+
+
