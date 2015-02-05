@@ -16,7 +16,7 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
     testApp.factory    = $provide.factory;
     testApp.service    = $provide.service;
 }])
-.controller('SelectController', function($scope){
+.controller('SelectController',[ '$scope','$http', function($scope, $http){
 
   $scope.callBackSD = function (options) {
       return [
@@ -32,6 +32,11 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
           {value: 'value2', label: 'label2'},
           {value: 'value3', label: 'Multiple dynamic select!'}
         ]
+  };
+
+
+  $scope.callBackMSDAsync = function (options) {
+      return $http.get(options.async.url);
   };
 
   $scope.schema = {
@@ -67,6 +72,21 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
             title: 'Multi Select Dynamic',
             type: 'array',
             description: 'This data is loaded from the $scope.callBackMSD function.'
+        },
+        multiselectdynamic_http_post: {
+            title: 'Multi Select Dynamic HTTP Post',
+            type: 'array',
+            description: 'This data is asynchrously loaded using a HTTP post(specify options.url and options.parameter)'
+        },
+        multiselectdynamic_http_get: {
+            title: 'Multi Select Dynamic HTTP Post',
+            type: 'array',
+            description: 'This data is asynchrously loaded using a HTTP get(specify options.url)'
+        },
+        multiselectdynamic_async: {
+            title: 'Multi Select Dynamic Async',
+            type: 'array',
+            description: 'This data is asynchrously loaded using a async call(specify options.async.call)'
         }
     },
     required: ['select', 'multiselect']
@@ -92,9 +112,39 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
        "key": "multiselectdynamic",
        "type": 'strapmultiselectdynamic',
        "options": {
-         "callback": $scope.callBackMSD
+           "callback": $scope.callBackMSD
        }
      },
+     {
+       "key": "multiselectdynamic_http_post",
+       "type": 'strapmultiselectdynamic',
+       "options": {
+           "http_post": {
+               "url" : "/angular-schema-form-strapselect/test/testdata.json",
+               "parameter": { "myparam" : "Hello"}
+           }
+       }
+     },
+     {
+       "key": "multiselectdynamic_http_get",
+       "type": 'strapmultiselectdynamic',
+       "options": {
+           "http_get": {
+               "url" : "/angular-schema-form-strapselect/test/testdata.json"
+           }
+       }
+     },
+     {
+       "key": "multiselectdynamic_async",
+       "type": 'strapmultiselectdynamic',
+       "options": {
+           "async": {
+               "call": $scope.callBackMSDAsync,
+               "url" : "/angular-schema-form-strapselect/test/testdata.json"
+           }
+       }
+     },
+
      {
        type: "submit",
        style: "btn-info",
@@ -111,6 +161,6 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
     $scope.$broadcast('schemaFormValidate')
     console.log($scope.model);
   };
-});
+}]);
 
 
