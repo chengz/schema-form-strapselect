@@ -20,7 +20,7 @@ describe('Schema form', function() {
           type: "object",
           properties: {
             file: {
-              type: "string",
+              type: "string"
             }
           }
         };
@@ -45,7 +45,7 @@ describe('Schema form', function() {
           type: "object",
           properties: {
             file: {
-              type: "string",
+              type: "string"
             }
           }
         };

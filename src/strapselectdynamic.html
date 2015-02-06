@@ -1,11 +1,10 @@
 <div class="form-group" ng-class="{'has-error': hasError(), 'has-success': hasSuccess()}">
     <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
 
-    <div class="form-group">
+    <div class="form-group" ng-controller="StrapSelectController" ng-init="fetchResult(form.options)">
         <button type="button" class="btn btn-default" sf-changed="form" ng-model="$$value$$" schema-validate="form"
-                data-placeholder="{{form.placeholder || form.schema.placeholder || ('placeholders.select')}}"
-                data-multiple="1" data-html="1" ng-options="item.value as item.name for item in form.items"
-                bs-select></button>
+                data-placeholder="{{form.placeholder || form.schema.placeholder ||('placeholders.select')}}"
+                data-html="1" ng-options="item.value as item.name for item in items" bs-select></button>
         <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
     </div>
 </div>

@@ -1,6 +1,7 @@
 /* global require */
 
 var gulp = require('gulp');
+var webserver = require('gulp-webserver');
 
 var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');
@@ -26,7 +27,7 @@ gulp.task('minify', function() {
   stream.queue(gulp.src('./src/*.js'));
 
   stream.done()
-        .pipe(concat('schema-form-strapselect.min.js'))
+        .pipe(concat('bootstrap-strapselect.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('.'));
 
@@ -44,7 +45,7 @@ gulp.task('non-minified-dist', function() {
   stream.queue(gulp.src('./src/*.js'));
 
   stream.done()
-        .pipe(concat('schema-form-strapselect.js'))
+        .pipe(concat('bootstrap-strapselect.js'))
         .pipe(gulp.dest('.'));
 
 });
@@ -61,4 +62,13 @@ gulp.task('default', [
 
 gulp.task('watch', function() {
   gulp.watch('./src/**/*', ['default']);
+});
+
+gulp.task('webserver', function() {
+  gulp.src('.')
+    .pipe(webserver({
+      livereload: true,
+      port: 8001,
+      open: true
+    }));
 });
