@@ -1,12 +1,12 @@
 {
-  "name": "angular-schema-form-strapselect",
+  "name": "schema-form-strapselect",
   "main": [
-    "bootstrap-strapselect.min.js"
+    "schema-form-strapselect.min.js"
   ],
   "version": "0.1.0",
   "authors": [
-    "Cheng Zhu, Steve Hu",
-    "Cheng Zhu<cheng@aqmin.com>;Steve Hu<stevehu@gmail.com"
+    "Cheng Zhu",
+    "Cheng Zhu<cheng@aqmin.com>"
   ],
   "moduleType": [
     "globals"
@@ -17,8 +17,7 @@
     "form",
     "json",
     "json-schema",
-    "schema",
-    "angular-schema-form-strapselect"
+    "schema"
   ],
   "license": "MIT",
   "ignore": [

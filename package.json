@@ -1,11 +1,11 @@
 {
-  "name": "angular-schema-form-strapselect",
+  "name": "schema-form-strapselect",
   "version": "0.1.0",
   "description": "strap select add-on for schema form",
   "scripts": {
     "test": "rm -fr coverage && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS karma.conf.js"
   },
-  "author": "Steve Hu",
+  "author": "Cheng Zhu",
   "license": "MIT",
   "devDependencies": {
     "chai": "^1.9.0",
@@ -30,9 +30,5 @@
     "sinon": "^1.9.0",
     "sinon-chai": "^2.5.0",
     "streamqueue": "0.0.5"
-  },
-  "dependencies": {
-    "gulp-webserver": "^0.9.0",
-    "webserver": "^1.1.2"
   }
 }
