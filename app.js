@@ -15,7 +15,7 @@ testApp.controller('SelectController',[ '$scope','$http', function($scope, $http
       return [
           {value: 'value1', name: 'label1'},
           {value: 'value2', name: 'label2'},
-          {value: 'value3', name: 'Dynamic select!'}
+          {value: 'value3', name: 'Select dynamic!'}
         ]
     };
 
@@ -23,12 +23,14 @@ testApp.controller('SelectController',[ '$scope','$http', function($scope, $http
       return [
           {value: 'value1', name: 'label1'},
           {value: 'value2', name: 'label2'},
-          {value: 'value3', name: 'Multiple dynamic select!'}
+          {value: 'value3', name: 'Multiple select dynamic!'}
         ]
     };
 
 
     $scope.callBackMSDAsync = function (options) {
+      // Node that we got the url from the options. Not necessary, but then the same callback function can be used
+      // by different selects with different parameters.
       return $http.get(options.async.url);
     };
 
