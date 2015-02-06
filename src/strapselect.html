@@ -1,7 +1,10 @@
 <div class="form-group" ng-class="{'has-error': hasError(), 'has-success': hasSuccess()}">
-  <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
-  <div class="form-group">
-    <button type="button" class="btn btn-default" sf-changed="form" ng-model="$$value$$" schema-validate="form" data-placeholder="{{form.placeholder || form.schema.placeholder ||('placeholders.select' | translate)}}" data-html="1" ng-options="item.value as item.label for item in form.schema.items" bs-select></button>
-    <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
-  </div>
+    <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-default" sf-changed="form" ng-model="$$value$$" schema-validate="form"
+                data-placeholder="{{form.placeholder || form.schema.placeholder ||('placeholders.select')}}"
+                data-html="1" ng-options="item.value as item.label for item in form.schema.items" bs-select></button>
+        <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
+    </div>
 </div>

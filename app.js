@@ -3,43 +3,36 @@
 
 /**
  * The main app module
- * @name app
+ * @name testApp
  * @type {angular.Module}
  */
 
+var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'mgcrea.ngStrap.modal', 'schemaForm']);
 
-var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascalprecht.translate'])
-.config(['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', function ($controllerProvider, $compileProvider, $filterProvider, $provide) {
-    testApp.controller = $controllerProvider.register;
-    testApp.directive  = $compileProvider.directive;
-    testApp.filter     = $filterProvider.register;
-    testApp.factory    = $provide.factory;
-    testApp.service    = $provide.service;
-}])
-.controller('SelectController',[ '$scope','$http', function($scope, $http){
+testApp.controller('SelectController',[ '$scope','$http', function($scope, $http){
 
-  $scope.callBackSD = function (options) {
+    $scope.callBackSD = function (options) {
       return [
           {value: 'value1', label: 'label1'},
           {value: 'value2', label: 'label2'},
           {value: 'value3', label: 'Dynamic select!'}
         ]
-  };
+    };
 
-  $scope.callBackMSD = function (options) {
+    $scope.callBackMSD = function (options) {
       return [
           {value: 'value1', label: 'label1'},
           {value: 'value2', label: 'label2'},
           {value: 'value3', label: 'Multiple dynamic select!'}
         ]
-  };
+    };
 
 
-  $scope.callBackMSDAsync = function (options) {
+    $scope.callBackMSDAsync = function (options) {
       return $http.get(options.async.url);
-  };
+    };
 
-  $scope.schema = {
+    $scope.schema = {
     type: 'object',
     title: 'Select',
     properties: {
@@ -90,8 +83,8 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
         }
     },
     required: ['select', 'multiselect']
-  };
-  $scope.form = [
+    };
+    $scope.form = [
      {
        "key": 'select',
        "type": 'strapselect'
@@ -149,18 +142,18 @@ var testApp = angular.module('testApp', ['mgcrea.ngStrap', 'schemaForm', 'pascal
        type: "submit",
        style: "btn-info",
        title: "OK"
-     },
+     }
 
-  ];
-  $scope.model = {};
-  $scope.model.select = 'value3';
-  $scope.model.multiselect = ['value2', 'value1'];
+    ];
+    $scope.model = {};
+    $scope.model.select = 'value3';
+    $scope.model.multiselect = ['value2', 'value1'];
 
 
-  $scope.submitted = function(form){
+    $scope.submitted = function(form){
     $scope.$broadcast('schemaFormValidate')
     console.log($scope.model);
-  };
+    };
 }]);
 
 

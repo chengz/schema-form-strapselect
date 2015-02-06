@@ -79,7 +79,10 @@ angular.module('schemaForm').controller('StrapSelectController', ['$scope', '$ht
     $scope.items = [];
 
     $scope.fetchResult = function (options) {
-        if (options.callback) {
+        if (!options) {
+            console.log("StrapSelectController.fetchResult : No options set");
+        }
+        else if (options.callback) {
             $scope.items = options.callback(options);
             console.log('items', $scope.items);
         }
