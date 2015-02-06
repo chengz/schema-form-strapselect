@@ -13,17 +13,17 @@ testApp.controller('SelectController',[ '$scope','$http', function($scope, $http
 
     $scope.callBackSD = function (options) {
       return [
-          {value: 'value1', label: 'label1'},
-          {value: 'value2', label: 'label2'},
-          {value: 'value3', label: 'Dynamic select!'}
+          {value: 'value1', name: 'label1'},
+          {value: 'value2', name: 'label2'},
+          {value: 'value3', name: 'Dynamic select!'}
         ]
     };
 
     $scope.callBackMSD = function (options) {
       return [
-          {value: 'value1', label: 'label1'},
-          {value: 'value2', label: 'label2'},
-          {value: 'value3', label: 'Multiple dynamic select!'}
+          {value: 'value1', name: 'label1'},
+          {value: 'value2', name: 'label2'},
+          {value: 'value3', name: 'Multiple dynamic select!'}
         ]
     };
 
@@ -39,22 +39,14 @@ testApp.controller('SelectController',[ '$scope','$http', function($scope, $http
       select: {
         title: 'Single Select Static',
         type: 'string',
-        description: 'Only single item is allowed',
-        items: [
-          {value: 'value1', label: 'label1'},
-          {value: 'value2', label: 'label2'},
-          {value: 'value3', label: 'label3'}
-        ]
+        description: 'Only single item is allowed'
+
       },
       multiselect: {
         title: 'Multi Select Static',
         type: 'array',
-        description: 'Multi single items are allowed(select third for error)',
-        items: [
-          {value: ['value1', 'value1a'], label: 'label1'},
-          {value: ['value2', 'value2'], label: 'label2'},
-          {value: 'value3', label: 'long very very long label3'}
-        ]
+        description: 'Multi single items are allowed(select third for error)'
+
       },
         selectdynamic: {
             title: 'Single Select Dynamic',
@@ -87,12 +79,21 @@ testApp.controller('SelectController',[ '$scope','$http', function($scope, $http
     $scope.form = [
      {
        "key": 'select',
-       "type": 'strapselect'
-
+       "type": 'strapselect',
+       "items": [
+          {"value": 'value1', "name": 'label1'},
+          {"value": 'value2', "name": 'label2'},
+          {"value": 'value3', "name": 'label3'}
+        ]
      },
      {
        "key": 'multiselect',
-       "type": 'strapselect'
+       "type": 'strapmultiselect',
+        "items": [
+          {"value": 'value1', "name": 'label1'},
+          {"value": 'value2', "name": 'label2'},
+          {"value": 'value3', "name": 'long very very long label3'}
+        ]
      },
      {
        "key": "selectdynamic",

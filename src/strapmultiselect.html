@@ -4,7 +4,7 @@
     <div class="form-group">
         <button type="button" class="btn btn-default" sf-changed="form" ng-model="$$value$$" schema-validate="form"
                 data-placeholder="{{form.placeholder || form.schema.placeholder || ('placeholders.select')}}"
-                data-multiple="1" data-html="1" ng-options="item.value as item.label for item in form.schema.items"
+                data-multiple="1" data-html="1" ng-options="item.value as item.name for item in form.items"
                 bs-select></button>
         <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
     </div>
