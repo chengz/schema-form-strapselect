@@ -72,7 +72,7 @@ testApp.controller('SelectController',[ '$scope','$http', function($scope, $http
             description: 'This data is asynchrously loaded using a HTTP post(specify options.url and options.parameter)'
         },
         multiselectdynamic_http_get: {
-            title: 'Multi Select Dynamic HTTP Post',
+            title: 'Multi Select Dynamic HTTP Get',
             type: 'array',
             description: 'This data is asynchrously loaded using a HTTP get(specify options.url)'
         },
